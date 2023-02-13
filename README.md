@@ -20,10 +20,16 @@ To run the backend development server, do:
 .\pocketbase serve
 ```
 
-If your system runs an x64 version of MacOS, do:
+If your system runs an x64 version of MacOS (i7), do:
 
 ```
-.\pocketbasex64 serve
+./pocketbase64 serve
+```
+
+If your system runs an arm64 version of MacOS (M1, M2), do:
+
+```
+./pocketbaseArm serve
 ```
 
 Open [http://127.0.0.1:8090/\_/](http://127.0.0.1:8090/_/) with your browser to get to the PocketBase admin ui.
