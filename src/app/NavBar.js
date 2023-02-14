@@ -4,7 +4,9 @@ import Grid from '@mui/system/Unstable_Grid';
 import SearchBar from './SearchBar';
 import Image from 'next/image';
 import LinkableComponent from './LinkableComponent';
-import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
+import AccountMenu from './AccountMenu';
+import { Button } from '@nextui-org/react';
 
 export default function NavBar() {
   return (
@@ -24,25 +26,32 @@ export default function NavBar() {
             component={
               <Image src="/bookhublogo.png" width={150} height={50} alt="" />
             }
-          ></LinkableComponent>
+          />
         </Grid>
         <Grid xs={6} mdOffset={2}>
           <SearchBar />
         </Grid>
-        <Grid xs={1} mdOffset={1}>
-          <Button variant="outlined" color="success">
-            Log in
-          </Button>
-        </Grid>
-        <Grid xs={1} mdOffset={'auto'}>
+        <Grid xs={1} mdOffset={1.5}>
           <LinkableComponent
-            link="/signup"
+            link="/newbook"
             component={
-              <Button variant="contained" color="success" className="Button">
-                Sign up
+              <Button
+                css={{
+                  position: 'fixed',
+                  top: 15,
+                  right: 90,
+                  backgroundColor: '#22b573',
+                }}
+                auto
+                width={10}
+              >
+                New Book
               </Button>
             }
-          ></LinkableComponent>
+          />
+        </Grid>
+        <Grid>
+          <AccountMenu />
         </Grid>
       </Grid>
     </Box>
