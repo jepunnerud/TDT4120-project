@@ -15,8 +15,8 @@ function Copyright() {
   return (
     <Typography color="text.secondary">
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        BookHub.com
+      <Link color="inherit" href="/">
+        bookhub.no
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -29,8 +29,8 @@ export default function BoxSx() {
     <Box
       sx={{
         height: 100,
+        marginTop: 10,
         borderRadius: 1,
-        position: 'absolute',
         left: 10,
         bottom: 10,
         right: 10,
@@ -41,7 +41,7 @@ export default function BoxSx() {
       }}
     >
       <Container sx={{ marginLeft: 1 }}>
-        <Typography>BookHub</Typography>
+        <Typography>bookhub</Typography>
         <Copyright />
       </Container>
 
@@ -62,7 +62,7 @@ export default function BoxSx() {
         </IconButton>
         <IconButton
           variant="solid"
-          href={`mailto:contact@bookhub.com`}
+          href={`mailto:contact@bookhub.no`}
           target={'_blank'}
         >
           <EmailIcon />
