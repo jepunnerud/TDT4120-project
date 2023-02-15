@@ -15,6 +15,8 @@ const components = [
   />,
 ];
 
+const year = new Date().getFullYear();
+
 const page = () => {
   return (
     <Card css={{ mw: '800px', minHeight: '600px', margin: 'auto' }}>
@@ -32,6 +34,7 @@ const page = () => {
               color="#22b573"
               width="17%"
               css={{ position: 'fixed', left: 100 }}
+              initialValue={year}
             />
           }
           {<GenreMenu style={{ position: 'fixed', right: 100 }} />}
