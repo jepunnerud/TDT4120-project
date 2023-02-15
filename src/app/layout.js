@@ -1,6 +1,7 @@
 'use client';
 import './globals.css';
 import NavBar from './NavBar';
+import Footer from './Footer';
 
 export default function RootLayout({ children }) {
   return (
@@ -8,6 +9,7 @@ export default function RootLayout({ children }) {
       <body>
         <NavBar />
         {children}
+        <Footer />
       </body>
     </html>
   );
