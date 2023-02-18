@@ -7,14 +7,15 @@ body {
 }
 
 #gridContainer {
-  background-color: grey;
   display: grid;
-  grid-template-columns: 15rem 25rem 25rem;
+  grid-template-columns: 18rem 35rem 23rem;
   grid-template-rows: 3fr 2fr 5fr; /* the second row is twice as tall as the first row */
-  grid-gap: 10px;
+  margin: 5em;
+  column-gap: 2.5em;
 }
 
 .tall {
+  /*Image section*/
   grid-row: 1 / 4; /* span across three rows - 1 til og ikke med 4 */
   grid-column: 1 / 2;
 }
@@ -32,18 +33,24 @@ body {
   /*Description*/
   grid-row: 3 / 4; /* second row */
   grid-column: 2 / 4; /* span across two columns */
-  font-size: 20px;
 }
 
 .item:nth-child(6) {
   /* Bottom text */
   grid-row: 4 / 5; /* second row */
   grid-column: 1 / 4; /* span across two columns */
-  font-size: 20px;
 }
 
 .item {
-  background-color: rebeccapurple;
+}
+.item > p {
+  font-size: 20px;
+  margin-top: 0;
+}
+
+.item > h1 {
+  margin-top: 0;
+  font-size: 25px;
 }
 
 .book-text {
