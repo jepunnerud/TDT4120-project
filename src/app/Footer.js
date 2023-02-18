@@ -29,11 +29,9 @@ export default function BoxSx() {
     <Box
       sx={{
         height: 100,
-        marginTop: 10,
         borderRadius: 1,
-        left: 10,
-        bottom: 10,
-        right: 10,
+        position: 'relative',
+        bottom: 0,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
