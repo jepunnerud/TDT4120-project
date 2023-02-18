@@ -5,3 +5,46 @@ body {
 .Link {
   text-decoration: none;
 }
+
+#gridContainer {
+  background-color: grey;
+  display: grid;
+  grid-template-columns: 15rem 25rem 25rem;
+  grid-template-rows: 3fr 2fr 5fr; /* the second row is twice as tall as the first row */
+  grid-gap: 10px;
+}
+
+.tall {
+  grid-row: 1 / 4; /* span across three rows - 1 til og ikke med 4 */
+  grid-column: 1 / 2;
+}
+
+.tall > img {
+  width: 100%;
+}
+
+.item:nth-child(3) {
+  /*Star icons section*/
+  grid-row: 2 / 3; /* second row */
+  grid-column: 2 / 4; /* span across two columns */
+}
+.item:nth-child(5) {
+  /*Description*/
+  grid-row: 3 / 4; /* second row */
+  grid-column: 2 / 4; /* span across two columns */
+  font-size: 20px;
+}
+
+.item:nth-child(6) {
+  /* Bottom text */
+  grid-row: 4 / 5; /* second row */
+  grid-column: 1 / 4; /* span across two columns */
+  font-size: 20px;
+}
+
+.item {
+  background-color: rebeccapurple;
+}
+
+.book-text {
+}
