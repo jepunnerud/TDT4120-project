@@ -1,14 +1,21 @@
 'use client';
-import { Grid, Card, Text, Container } from '@nextui-org/react';
 import React from 'react';
-import BookCard from './components/BookCard';
+import BookContainer from './components/BookContainer';
+import { Box } from '@material-ui/core';
 
 const Homepage = () => {
   return (
-    <div>
-      <h1>Welcome to my homepage</h1>
-      <BookCard title="Lord of the Rings" rating={5} />
-    </div>
+    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100vh' }}>
+      <Box sx={{ bgcolor: '#F5F5F5', width: '1000px', p: 2 }}>
+        <BookContainer title="Popular Now" />
+      </Box>
+      <Box sx={{ bgcolor: '#EFEFEF', width: '1000px', p: 2, mt: 3 }}>
+        <BookContainer title="New Releases" />
+      </Box>
+      <Box sx={{ bgcolor: '#F0F0F0', width: '1000px', p: 2, mt: 3 }}>
+        <BookContainer title="Recommended for You" />
+      </Box>
+    </Box>
   );
 };
 
