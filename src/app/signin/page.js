@@ -2,23 +2,40 @@
 import pb from '../(lib)/pocketbase';
 import '../globals.css';
 import { Card, Input, Row, Spacer, Button } from '@nextui-org/react';
-import Rows from '../newbook/Rows';
+import Rows from '../components/Rows';
 import { useForm } from 'react-hook-form';
+import { useState } from 'react';
 
-const components = [
-  <Input bordered labelPlaceholder="Email" color="#22b573" width="80%" />,
-  <Input.Password
-    bordered
-    labelPlaceholder="Password"
-    color="#22b573"
-    width="80%"
-  />,
-];
-
-const year = new Date().getFullYear();
-
-const page = () => {
+export default () => {
+  const [isLoading, setLoading] = useState(false);
   const { register, handleSubmit } = useForm();
+
+  const login = async (data) => {
+    setLoading(true);
+    const authData = await pb
+      .collection('users')
+      .authWithPassword(data.email, data.password);
+    setLoading(false);
+  };
+
+  const components = [
+    <Input
+      bordered
+      labelPlaceholder="Email"
+      color="#22b573"
+      width="80%"
+      {...register('email')}
+    />,
+    <Input.Password
+      bordered
+      labelPlaceholder="Password"
+      color="#22b573"
+      width="80%"
+      {...register('password')}
+    />,
+  ];
+
+  const year = new Date().getFullYear();
 
   return (
     <>
@@ -39,6 +56,7 @@ const page = () => {
                   left: 100,
                   backgroundColor: '#22b573',
                 }}
+                onPress={handleSubmit(login)}
               >
                 Log in
               </Button>
@@ -50,6 +68,7 @@ const page = () => {
                   right: 100,
                   backgroundColor: '#22b573',
                 }}
+                onPress={handleSubmit(login)}
               >
                 Create new user
               </Button>
@@ -61,5 +80,3 @@ const page = () => {
     </>
   );
 };
-
-export default page;

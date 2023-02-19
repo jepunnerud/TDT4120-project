@@ -5,3 +5,13 @@ body {
 .Link {
   text-decoration: none;
 }
+
+.dropdownSelect {
+  background-color: #22b573;
+  color: white;
+  border-radius: 15px;
+  height: 40px;
+  width: 17%;
+  border: none;
+  text-align: center;
+}
