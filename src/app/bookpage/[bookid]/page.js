@@ -8,7 +8,6 @@ import PocketBase from 'pocketbase';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ClearIcon from '@mui/icons-material/Clear';
 
 import { useRouter } from 'next/navigation';
@@ -30,6 +29,7 @@ function Book({ params }) {
   const classes = useStyles();
 
   const [records, setRecords] = useState([]);
+  const [image, setImage] = useState('');
 
   useEffect(() => {
     const foo = async () => {
@@ -42,9 +42,9 @@ function Book({ params }) {
         .getFullList(200 /* batch size */, {
           sort: '-created',
         });
+
       setRecords(fetchedRecords);
       console.log(fetchedRecords);
-      console.log(fetchedRecords[0].title);
     };
     foo();
   }, []);
@@ -60,7 +60,13 @@ function Book({ params }) {
       </div>
       <div id="gridContainer">
         <div className="item tall">
-          <img src={img.src} alt="book cover"></img>
+          <img
+            src={
+              records.length > 0 &&
+              `http://127.0.0.1:8090/api/files/books/${records[0].id}/${records[0].image}`
+            }
+            alt="book cover"
+          ></img>
         </div>
         <div className="item">
           <h1> {records.length > 0 && records[0].title}</h1>
