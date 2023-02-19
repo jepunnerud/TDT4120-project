@@ -4,7 +4,6 @@ import Grid from '@mui/system/Unstable_Grid';
 import SearchBar from './SearchBar';
 import Image from 'next/image';
 import LinkableComponent from './LinkableComponent';
-// import Button from '@mui/material/Button';
 import AccountMenu from './AccountMenu';
 import { Button } from '@nextui-org/react';
 
