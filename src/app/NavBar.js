@@ -36,7 +36,7 @@ export default function NavBar() {
             component={
               <Button
                 css={{
-                  position: 'fixed',
+                  position: 'absolute',
                   top: 15,
                   right: 90,
                   backgroundColor: '#22b573',

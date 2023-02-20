@@ -27,7 +27,7 @@ export default function AccountMenu() {
           sx={{
             color: '#22b573',
             cursor: 'pointer',
-            position: 'fixed',
+            position: 'absolute',
             right: 30,
           }}
           aria-controls={open ? 'account-menu' : undefined}
