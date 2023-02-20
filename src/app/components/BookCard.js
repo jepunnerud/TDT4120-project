@@ -11,7 +11,7 @@ import { Rating } from '@material-ui/lab';
 
 const BookCard = ({ title, rating }) => {
     return (
-      <Card style={{ height: 350, width: 200 }}>
+      <Card style={{ height: 300, width: 200 }}>
         <CardMedia
           component="img"
           height="200"
