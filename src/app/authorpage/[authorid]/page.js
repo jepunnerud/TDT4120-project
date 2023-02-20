@@ -1,21 +1,26 @@
 'use client';
-import { User } from '@nextui-org/react';
-import { Badge, Grid } from '@nextui-org/react';
-import Box from '@mui/material/Box';
 import PocketBase from 'pocketbase';
 import { useEffect, useState } from 'react';
-import { Record } from 'pocketbase';
 import Slideshow from './Slideshow';
 import StarIcons from '@/app/components/StarIcons';
 
 import img from './download.jpeg';
 
 const pb = new PocketBase('http://127.0.0.1:8090');
-
-import BookCard from '@/app/components/BookCard';
+pb.autoCancellation(false);
 
 function Author() {
+  const [books, setBooks] = useState([]);
   const [records, setRecords] = useState([]);
+
+  const fetchBooks = async (bookid) => {
+    let records = [];
+    bookid.forEach(async (id) => {
+      const record = await pb.collection('books').getOne(id);
+      records.push(record);
+    });
+    return records;
+  };
 
   useEffect(() => {
     const foo = async () => {
@@ -30,17 +35,11 @@ function Author() {
         });
 
       setRecords(fetchedRecords);
-      console.log(fetchedRecords);
+      fetchBooks(fetchedRecords[1].books).then((e) => setBooks(e));
     };
     foo();
   }, []);
-  const obj1 = { title: 'book', rating: 5 };
-  const obj2 = { title: 'book', rating: 5 };
-  const obj3 = { title: 'book', rating: 5 };
-  const obj4 = { title: 'book', rating: 5 };
-  const obj5 = { title: 'book', rating: 5 };
-  const obj6 = { title: 'book', rating: 5 };
-  const books = [obj1, obj2, obj3, obj4, obj5, obj6];
+
   return (
     <>
       <div id="authorGridContainer">
@@ -48,7 +47,7 @@ function Author() {
           <img src={img.src}></img>
         </div>
         <div>
-          <p className="authorText">Name</p>
+          <p className="authorText">{records.length > 0 && records[1].name}</p>
         </div>
         <div>
           <StarIcons></StarIcons>
@@ -60,7 +59,7 @@ function Author() {
         <div className="authorSlideshow">
           <div id="booksSlideshow">
             <p>Books:</p>
-            <Slideshow books={books} />
+            {books.length > 0 && <Slideshow books={books} />}
           </div>
         </div>
       </div>

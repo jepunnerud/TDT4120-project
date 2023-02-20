@@ -19,6 +19,10 @@ body {
   margin-top: 0;
 }
 
+.authorSlideshow {
+  grid-column: 1 / 4;
+}
+
 #booksSlideshow > p {
   font-size: 22px;
   margin-left: 2em;

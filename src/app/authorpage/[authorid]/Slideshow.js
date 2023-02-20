@@ -31,6 +31,7 @@ const useStyles = makeStyles({
 const Slideshow = ({ books }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const classes = useStyles();
+  console.log(books);
 
   const handlePrevClick = () => {
     setCurrentPage((prevPage) => prevPage - 1);
@@ -57,7 +58,11 @@ const Slideshow = ({ books }) => {
         </IconButton>
         {booksToShow.map((book) => (
           <div key={book.id} className={classes.bookCard}>
-            <BookCard title={book.title} rating={book.rating} />
+            <BookCard
+              title={book.title}
+              rating={book.rating}
+              imgPath={`http://127.0.0.1:8090/api/files/books/${book.id}/${book.image}`}
+            />
           </div>
         ))}
         <IconButton
