@@ -3,9 +3,10 @@ import Box from '@mui/system/Box';
 import Grid from '@mui/system/Unstable_Grid';
 import SearchBar from './SearchBar';
 import Image from 'next/image';
-import LinkableComponent from './LinkableComponent';
+import LinkableComponent from './components/LinkableComponent';
 import AccountMenu from './AccountMenu';
 import { Button } from '@nextui-org/react';
+import SearchBarTest from './SearchBarTest';
 
 export default function NavBar() {
   return (
@@ -29,6 +30,7 @@ export default function NavBar() {
         </Grid>
         <Grid xs={6} mdOffset={2}>
           <SearchBar />
+          {/* <SearchBarTest /> */}
         </Grid>
         <Grid xs={1} mdOffset={1.5}>
           <LinkableComponent
@@ -36,7 +38,7 @@ export default function NavBar() {
             component={
               <Button
                 css={{
-                  position: 'fixed',
+                  position: 'absolute',
                   top: 15,
                   right: 90,
                   backgroundColor: '#22b573',

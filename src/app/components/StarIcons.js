@@ -29,17 +29,17 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 20,
     marginLeft: 20,
   },
+  btnSave: {
+    marginLeft: '13px',
+  },
   btn: {
     marginLeft: '13px',
     backgroundColor: '#22b573',
   },
-  saveBtn: {
-    marginLeft: '13px',
-  },
 }));
 
-function StarIcons() {
-  const initialRating = 4;
+function StarIcons(props) {
+  const initialRating = 4; //får ikke til å bruke props.rating
   const classes = useStyles();
   const [rating, setRating] = useState(initialRating);
   const [editable, setEditable] = useState(false);
@@ -59,8 +59,8 @@ function StarIcons() {
 
   return (
     <>
-      <div key={1} className={classes.root}>
-        <div key={2} className={classes.stars}>
+      <div className={classes.root}>
+        <div className={classes.stars}>
           {[1, 2, 3, 4, 5].map((value) => {
             const star =
               value <= rating ? (
@@ -92,7 +92,7 @@ function StarIcons() {
           </Button>
         ) : (
           <Button
-            className={classes.saveBtn}
+            className={classes.btnSave}
             variant="contained"
             color="primary"
             onClick={handleSaveClick}

@@ -1,5 +1,4 @@
 'use client';
-import Box from '@mui/material/Box';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -27,7 +26,7 @@ export default function AccountMenu() {
           sx={{
             color: '#22b573',
             cursor: 'pointer',
-            position: 'fixed',
+            position: 'absolute',
             right: 30,
           }}
           aria-controls={open ? 'account-menu' : undefined}

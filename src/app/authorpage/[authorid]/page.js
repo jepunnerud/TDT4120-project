@@ -9,33 +9,30 @@ import img from './download.jpeg';
 const pb = new PocketBase('http://127.0.0.1:8090');
 pb.autoCancellation(false);
 
-function Author() {
-  const [books, setBooks] = useState([]);
-  const [records, setRecords] = useState([]);
+function Author({ params }) {
+  const [authorBooks, setAuthorBooks] = useState([]);
+  const [records, setRecords] = useState({});
 
-  const fetchBooks = async (bookid) => {
-    let records = [];
-    bookid.forEach(async (id) => {
-      const record = await pb.collection('books').getOne(id);
-      records.push(record);
-    });
+  const fetchBooks = async (books) => {
+    const records = await Promise.all(
+      books.map(async (id) => {
+        const record = await pb.collection('books').getOne(id);
+        return record;
+      })
+    );
+    console.log(records);
     return records;
   };
 
   useEffect(() => {
     const foo = async () => {
-      const authData = await pb.admins.authWithPassword(
-        'jepunnerud@gmail.com',
-        'heihei1234'
-      );
-      const fetchedRecords = await pb
+      const fetchedRecord = await pb
         .collection('authors')
-        .getFullList(200 /* batch size */, {
-          sort: '-created',
-        });
+        .getOne(params.authorid);
 
-      setRecords(fetchedRecords);
-      fetchBooks(fetchedRecords[1].books).then((e) => setBooks(e));
+      console.log(fetchedRecord);
+      setRecords(fetchedRecord);
+      fetchBooks(fetchedRecord.books).then((e) => setAuthorBooks(e));
     };
     foo();
   }, []);
@@ -47,21 +44,19 @@ function Author() {
           <img src={img.src}></img>
         </div>
         <div>
-          <p className="authorText">{records.length > 0 && records[1].name}</p>
+          <p className="authorText">{records && records.name}</p>
         </div>
         <div>
           <StarIcons></StarIcons>
         </div>
-        <div className="authorDescription">
-          <p className="authorText">Birthdate: </p>
-          <p className="authorText">description</p>
-        </div>
         <div className="authorSlideshow">
           <div id="booksSlideshow">
             <p>Books:</p>
-            {books.length > 0 && <Slideshow books={books} />}
+            {authorBooks.length > 0 && <Slideshow books={authorBooks} />}
           </div>
         </div>
+        <div></div>
+        <div></div>
       </div>
     </>
   );
