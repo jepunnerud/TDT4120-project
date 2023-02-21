@@ -1,13 +1,10 @@
 'use client';
-import PocketBase from 'pocketbase';
 import { useEffect, useState } from 'react';
 import Slideshow from './Slideshow';
 import StarIcons from '@/app/components/StarIcons';
+import pb from '@/app/(lib)/pocketbase';
 
 import img from './download.jpeg';
-
-const pb = new PocketBase('http://127.0.0.1:8090');
-pb.autoCancellation(false);
 
 function Author({ params }) {
   const [authorBooks, setAuthorBooks] = useState([]);
