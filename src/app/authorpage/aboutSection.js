@@ -1,7 +1,7 @@
 function About() {
   return (
     <>
-      <p>Please return to the home page...</p>
+      <p>This is a paragraph about the author...</p>
     </>
   );
 }
