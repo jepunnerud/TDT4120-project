@@ -115,7 +115,8 @@ body {
 .menu li a:hover {
   text-decoration: underline;
 }
-*/ .suggestion-list {
+
+.suggestion-list {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -124,20 +125,21 @@ body {
   border: 0;
   padding-bottom: 4px;
 
-  position: fixed;
+  position: absolute;
   max-height: 200px;
   overflow-y: auto;
   border-radius: 0 0 24px 24px;
   list-style-type: disc;
   width: 49%;
   border-color: aqua;
+  z-index: 1;
 }
 
 .suggestion-item {
-  background-color: hsl(101, 34%, 62%);
+  background-color: white;
   padding: 8px;
-  border-bottom: 1px solid #ddd;
   font-size: 16px;
+  cursor: pointer;
 }
 
 .suggestion-item:last-child {

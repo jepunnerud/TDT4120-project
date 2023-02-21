@@ -6,7 +6,6 @@ import Image from 'next/image';
 import LinkableComponent from './components/LinkableComponent';
 import AccountMenu from './AccountMenu';
 import { Button } from '@nextui-org/react';
-import SearchBarTest from './SearchBarTest';
 
 export default function NavBar() {
   return (
@@ -30,7 +29,6 @@ export default function NavBar() {
         </Grid>
         <Grid xs={6} mdOffset={2}>
           <SearchBar />
-          {/* <SearchBarTest /> */}
         </Grid>
         <Grid xs={1} mdOffset={1.5}>
           <LinkableComponent

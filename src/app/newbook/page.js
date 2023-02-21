@@ -94,7 +94,7 @@ export default () => {
   ];
 
   return (
-    <Card css={{ mw: '800px', minHeight: '600px', margin: 'auto' }}>
+    <Card css={{ mw: '800px', minHeight: '600px', margin: 'auto', zIndex: 0 }}>
       <Card.Body>
         <h1 style={{ textAlign: 'center', color: '#22b573', marginBottom: 40 }}>
           Fill in book details
