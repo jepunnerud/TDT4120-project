@@ -63,6 +63,7 @@ export default () => {
     document.getElementById('releaseYear').value = '';
     document.getElementById('imageUpload').value = null;
     document.getElementById('dropdown').value = '';
+    window.alert('Book added!');
   };
 
   const components = [
