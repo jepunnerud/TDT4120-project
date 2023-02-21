@@ -17,6 +17,11 @@ export async function getAuthor(name) {
   return auth;
 }
 
+export async function getBookOnId(bookid) {
+  const record = await pb.collection('books').getOne(bookid);
+  return record;
+}
+
 export async function getBook(title) {
   const book = [];
   const res = await pb.collection('books').getFullList();

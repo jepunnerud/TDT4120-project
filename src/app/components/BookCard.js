@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Card,
   CardContent,
@@ -8,29 +8,48 @@ import {
   Box,
 } from '@material-ui/core';
 import { Rating } from '@material-ui/lab';
+import { useState } from 'react';
+import pb from '../(lib)/pocketbase';
+pb.autoCancellation(false);
 
-const BookCard = ({ title, rating }) => {
-    return (
-      <Card style={{ height: 300, width: 200 }}>
-        <CardMedia
-          component="img"
-          height="200"
-          image="https://source.unsplash.com/random"
-          alt="Random image"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            {title}
-          </Typography>
-          <Box display="flex" alignItems="center">
-            <Rating name="rating" value={rating} max={5} readOnly />
-            <Typography variant="body2" color="text.secondary">
-              {rating}/5
-            </Typography>
-          </Box>
-        </CardContent>
-      </Card>
-    );
+const BookCard = ({ title, rating, bookid }) => {
+  const [book, setBook] = useState({ rating: 0 });
+  const clickOnBook = () => {
+    window.location.href = `http://localhost:3000/bookpage/${bookid}`;
   };
-  
-  export default BookCard;
+
+  useEffect(() => {
+    const loadBookInfo = async () => {
+      const record = await pb.collection('books').getOne(bookid);
+      setBook(record);
+    };
+    loadBookInfo();
+  }, [bookid]);
+
+  return (
+    <Card onClick={clickOnBook} style={{ height: 300, width: 200 }}>
+      <CardMedia
+        component="img"
+        height="200"
+        image={
+          book
+            ? `http://127.0.0.1:8090/api/files/books/${book.id}/${book.image}`
+            : ''
+        }
+        alt="Book Image"
+      />
+      <CardContent>
+        <Typography gutterBottom component="div">
+          {book.title}
+        </Typography>
+        <Box display="flex" alignItems="center">
+          <Rating name="rating" value={book.rating} max={5} readOnly />
+          <Typography variant="body2" color="text.secondary">
+            {book.rating}/5
+          </Typography>
+        </Box>
+      </CardContent>
+    </Card>
+  );
+};
+export default BookCard;
