@@ -6,7 +6,7 @@ body {
   text-decoration: none;
 }
 
-.dropdownSelect {
+/* .dropdownSelect {
   background-color: #22b573;
   color: white;
   border-radius: 15px;
@@ -20,9 +20,9 @@ body {
   display: grid;
   grid-template-columns: 18rem 35rem 23rem;
   grid-template-rows: 3fr 2fr 5fr; /* the second row is twice as tall as the first row */
-  margin: 5em;
+/* margin: 5em;
   column-gap: 2.5em;
-}
+} */
 
 .tall {
   /*Image section*/
@@ -51,8 +51,6 @@ body {
   grid-column: 1 / 4; /* span across two columns */
 }
 
-.item {
-}
 .item > p {
   font-size: 20px;
   margin-top: 0;
@@ -89,4 +87,37 @@ body {
 
 .menu li a:hover {
   text-decoration: underline;
+}
+*/ .suggestion-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  box-shadow: 0 4px 6px rgb(32 33 36 / 28%);
+  border: 0;
+  padding-bottom: 4px;
+
+  position: fixed;
+  max-height: 200px;
+  overflow-y: auto;
+  border-radius: 0 0 24px 24px;
+  list-style-type: disc;
+  width: 49%;
+  border-color: aqua;
+}
+
+.suggestion-item {
+  background-color: hsl(101, 34%, 62%);
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+  font-size: 16px;
+}
+
+.suggestion-item:last-child {
+  border-bottom: none;
+}
+
+.suggestion-item a {
+  color: #333;
+  text-decoration: solid;
 }
