@@ -10,7 +10,6 @@ const Homepage = () => {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        height: '100vh',
       }}
     >
       <Box sx={{ bgcolor: '#F5F5F5', width: '1000px', p: 2 }}>
