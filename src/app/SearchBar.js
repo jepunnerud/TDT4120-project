@@ -24,6 +24,7 @@ const SearchBar = () => {
   return (
     <>
       <TextField
+        autoComplete="off"
         fullWidth
         label={<SearchIcon />}
         variant="standard"
