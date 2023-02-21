@@ -6,6 +6,33 @@ body {
   text-decoration: none;
 }
 
+#authorGridContainer {
+  display: grid;
+  grid-template-columns: 10rem 20rem 23rem;
+  grid-template-rows: 1fr 2fr 1fr; /* the second row is twice as tall as the first row */
+  margin: 5em;
+  column-gap: 2.5em;
+}
+
+.authorText {
+  font-size: 22px;
+  margin-top: 0;
+}
+
+.authorSlideshow {
+  grid-column: 1 / 4;
+}
+
+#booksSlideshow > p {
+  font-size: 22px;
+  margin-left: 2em;
+  margin-bottom: 0;
+}
+
+.authorDescription {
+  grid-column: 1 / 4;
+}
+
 .dropdownSelect {
   background-color: #22b573;
   color: white;

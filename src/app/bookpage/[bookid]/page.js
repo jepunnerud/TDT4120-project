@@ -32,6 +32,10 @@ function Book({ params }) {
     foo();
   }, []);
 
+  const gotoAuthorPage = (id) => {
+    window.location.href = `http://localhost:3000/authorpage/${records.id}`;
+  };
+
   return (
     <>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -52,7 +56,7 @@ function Book({ params }) {
         </div>
         <div className="item">
           <h1> {records && records.title}</h1>
-          <p>by {records && records.autor}</p>
+          <p onClick={gotoAuthorPage}>by {records && records.author}</p>
         </div>
         <div className="item">
           {records && <StarIcons rating={records.rating}></StarIcons>}
