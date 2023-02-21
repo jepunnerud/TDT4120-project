@@ -1,16 +1,17 @@
 import TextField from '@mui/material/TextField';
 import SearchIcon from '@mui/icons-material/Search';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { getBooksAndAuthors } from './(lib)/pocketbase';
 import Fuse from 'fuse.js';
+import VerticalMenu from './VerticalMenu';
 
 const SearchBar = () => {
   const searchOptions = {
     includeScore: false,
     keys: ['title', 'name'],
   };
-
-  const ref = useRef(null);
+  let result;
+  const [menuItems, setMenuItems] = useState([]);
   const [search, setSearch] = useState('');
   let col;
   let fuse;
@@ -19,22 +20,24 @@ const SearchBar = () => {
       fuse = new Fuse(col, searchOptions);
     }
   );
-  let result;
 
   return (
-    <TextField
-      fullWidth
-      label={<SearchIcon />}
-      variant="standard"
-      ref={ref}
-      onKeyUp={(event) => {
-        try {
-          setSearch(event.target.value);
-          result = fuse.search(search);
-          console.log(result);
-        } catch (error) {}
-      }}
-    />
+    <>
+      <TextField
+        fullWidth
+        label={<SearchIcon />}
+        variant="standard"
+        onKeyUp={(event) => {
+          try {
+            setSearch(event.target.value);
+            result = fuse.search(search);
+            console.log(result);
+            setMenuItems(result);
+          } catch (error) {}
+        }}
+      />
+      <VerticalMenu menuItems={menuItems}></VerticalMenu>
+    </>
   );
 };
 
