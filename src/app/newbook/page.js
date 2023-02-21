@@ -126,6 +126,8 @@ export default () => {
             <option value="">Select genre</option>
             <option value="Fantasy">Fantasy</option>
             <option value="Horror">Horror</option>
+            <option value="Factual">Factual</option>
+            <option value="Romantic">Romantic</option>
           </select>
         </Row>
         <Spacer y={5}></Spacer>

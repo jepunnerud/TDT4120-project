@@ -6,7 +6,7 @@ body {
   text-decoration: none;
 }
 
-/* .dropdownSelect {
+.dropdownSelect {
   background-color: #22b573;
   color: white;
   border-radius: 15px;
@@ -20,9 +20,9 @@ body {
   display: grid;
   grid-template-columns: 18rem 35rem 23rem;
   grid-template-rows: 3fr 2fr 5fr; /* the second row is twice as tall as the first row */
-/* margin: 5em;
+  margin: 5em;
   column-gap: 2.5em;
-} */
+}
 
 .tall {
   /*Image section*/
