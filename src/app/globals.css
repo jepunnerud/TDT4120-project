@@ -6,6 +6,16 @@ body {
   text-decoration: none;
 }
 
+.dropdownSelect {
+  background-color: #22b573;
+  color: white;
+  border-radius: 15px;
+  height: 40px;
+  width: 17%;
+  border: none;
+  text-align: center;
+}
+
 #gridContainer {
   display: grid;
   grid-template-columns: 18rem 35rem 23rem;
@@ -51,7 +61,4 @@ body {
 .item > h1 {
   margin-top: 0;
   font-size: 25px;
-}
-
-.book-text {
 }

@@ -1,16 +1,12 @@
 'use client';
-import img from './download.jpeg';
-import StarIcons from './StarIcons';
-//import pb from '../../(lib)/pocketbase';
+import StarIcons from '@/app/components/StarIcons';
 import { useEffect, useState } from 'react';
-
-import PocketBase from 'pocketbase';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import ClearIcon from '@mui/icons-material/Clear';
-
 import { useRouter } from 'next/navigation';
+import pb from '@/app/(lib)/pocketbase';
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -21,27 +17,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const pb = new PocketBase('http://127.0.0.1:8090');
-
 function Book({ params }) {
   const router = useRouter();
-
   const classes = useStyles();
-
-  const [records, setRecords] = useState([]);
-  const [image, setImage] = useState('');
+  const [records, setRecords] = useState({});
 
   useEffect(() => {
     const foo = async () => {
-      const authData = await pb.admins.authWithPassword(
-        'jepunnerud@gmail.com',
-        'heihei1234'
-      );
-      const fetchedRecords = await pb
-        .collection('books')
-        .getFullList(200 /* batch size */, {
-          sort: '-created',
-        });
+      const fetchedRecords = await pb.collection('books').getOne(params.bookid);
 
       setRecords(fetchedRecords);
       console.log(fetchedRecords);
@@ -49,7 +32,6 @@ function Book({ params }) {
     foo();
   }, []);
 
-  // <h1 id="title">Book page {params.bookid}</h1>
   return (
     <>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -62,18 +44,18 @@ function Book({ params }) {
         <div className="item tall">
           <img
             src={
-              records.length > 0 &&
-              `http://127.0.0.1:8090/api/files/books/${records[0].id}/${records[0].image}`
+              records &&
+              `http://127.0.0.1:8090/api/files/books/${records.id}/${records.image}`
             }
             alt="book cover"
           ></img>
         </div>
         <div className="item">
-          <h1> {records.length > 0 && records[0].title}</h1>
-          <p>by {records.length > 0 && records[0].autor}</p>
+          <h1> {records && records.title}</h1>
+          <p>by {records && records.autor}</p>
         </div>
         <div className="item">
-          <StarIcons></StarIcons>
+          {records && <StarIcons rating={records.rating}></StarIcons>}
         </div>
         <div className="item">
           <Button
@@ -85,13 +67,11 @@ function Book({ params }) {
           </Button>
         </div>
         <div className="item">
-          <p>{records.length > 0 && records[0].description}</p>
+          <p>{records && records.description}</p>
         </div>
         <div className="item">
-          <p className="book-text">
-            Genre: {records.length > 0 && records[0].genre}
-          </p>
-          <p>First published: {records.length > 0 && records[0].releaseyear}</p>
+          <p className="book-text">Genre: {records && records.genre}</p>
+          <p>First published: {records.length > 0 && records.releaseyear}</p>
           <p></p>
         </div>
       </div>
