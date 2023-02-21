@@ -27,10 +27,12 @@ const SearchBar = () => {
       label={<SearchIcon />}
       variant="standard"
       ref={ref}
-      onChange={(event) => {
-        setSearch(event.target.value);
-        result = fuse.search(search);
-        console.log(result);
+      onKeyUp={(event) => {
+        try {
+          setSearch(event.target.value);
+          result = fuse.search(search);
+          console.log(result);
+        } catch (error) {}
       }}
     />
   );
