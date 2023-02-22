@@ -7,6 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 import ClearIcon from '@mui/icons-material/Clear';
 import { useRouter } from 'next/navigation';
 import pb from '@/app/(lib)/pocketbase';
+import LinkableComponent from '@/app/components/LinkableComponent';
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -33,7 +34,7 @@ function Book({ params }) {
   }, []);
 
   const gotoAuthorPage = (id) => {
-    window.location.href = `http://localhost:3000/authorpage/${records.id}`;
+    window.location.href = `http://localhost:3000/authorpage/${id}`;
   };
 
   return (
@@ -56,7 +57,10 @@ function Book({ params }) {
         </div>
         <div className="item">
           <h1> {records && records.title}</h1>
-          <p onClick={gotoAuthorPage}>by {records && records.author}</p>
+          <LinkableComponent
+            link={'/authorpage/' + records.author}
+            component={<h3>by {records.author}</h3>}
+          ></LinkableComponent>
         </div>
         <div className="item">
           {records && <StarIcons rating={records.rating}></StarIcons>}

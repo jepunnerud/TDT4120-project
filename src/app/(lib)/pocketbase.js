@@ -70,6 +70,7 @@ export async function getBooksAndAuthors() {
       collection: 'books',
       title: book.title,
       author: book.author,
+      id: book.id,
     });
   });
 
@@ -78,6 +79,7 @@ export async function getBooksAndAuthors() {
       collection: 'authors',
       name: author.name,
       books: author.books,
+      id: author.id,
     });
   });
   return res;

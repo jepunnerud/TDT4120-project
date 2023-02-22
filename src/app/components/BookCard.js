@@ -12,7 +12,7 @@ import { useState } from 'react';
 import pb from '../(lib)/pocketbase';
 pb.autoCancellation(false);
 
-const BookCard = ({ title, rating, bookid }) => {
+const BookCard = ({ bookid }) => {
   const [book, setBook] = useState({ rating: 0 });
   const clickOnBook = () => {
     window.location.href = `http://localhost:3000/bookpage/${bookid}`;
@@ -20,14 +20,19 @@ const BookCard = ({ title, rating, bookid }) => {
 
   useEffect(() => {
     const loadBookInfo = async () => {
-      const record = await pb.collection('books').getOne(bookid);
-      setBook(record);
+      if (bookid != undefined) {
+        const record = await pb.collection('books').getOne(bookid);
+        setBook(record);
+      }
     };
     loadBookInfo();
   }, [bookid]);
 
   return (
-    <Card onClick={clickOnBook} style={{ height: 300, width: 200 }}>
+    <Card
+      onClick={clickOnBook}
+      style={{ height: 300, width: 200, cursor: 'pointer' }}
+    >
       <CardMedia
         component="img"
         height="200"
