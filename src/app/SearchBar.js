@@ -3,7 +3,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { useState } from 'react';
 import { getBooksAndAuthors } from './(lib)/pocketbase';
 import Fuse from 'fuse.js';
-import VerticalMenu from './VerticalMenu';
+import SearchView from './SearchView';
 
 const SearchBar = () => {
   const searchOptions = {
@@ -37,7 +37,7 @@ const SearchBar = () => {
           } catch (error) {}
         }}
       />
-      <VerticalMenu menuItems={menuItems}></VerticalMenu>
+      <SearchView menuItems={menuItems}></SearchView>
     </>
   );
 };
