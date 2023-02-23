@@ -37,7 +37,7 @@ const BookCard = ({ bookid }) => {
         component="img"
         height="200"
         image={
-          book
+          book.id != undefined
             ? `http://127.0.0.1:8090/api/files/books/${book.id}/${book.image}`
             : ''
         }

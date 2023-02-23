@@ -34,10 +34,11 @@ const SearchBar = () => {
             result = fuse.search(search);
             console.log(result);
             setMenuItems(result);
+            document.getElementById('div').style = 'block';
           } catch (error) {}
         }}
       />
-      <SearchView menuItems={menuItems}></SearchView>
+      <SearchView menuItems={menuItems} id="div"></SearchView>
     </>
   );
 };

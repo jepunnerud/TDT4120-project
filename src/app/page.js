@@ -12,14 +12,11 @@ const Homepage = () => {
         alignItems: 'center',
       }}
     >
-      <Box sx={{ bgcolor: '#F5F5F5', width: '1000px', p: 2 }}>
-        <BookContainer title="Popular Now" />
+      <Box sx={{ bgcolor: '#F5F5F5', width: '1000px', p: 2, zIndex: 0 }}>
+        <BookContainer title="Newly added" rand={false} />
       </Box>
-      <Box sx={{ bgcolor: '#EFEFEF', width: '1000px', p: 2, mt: 3 }}>
-        <BookContainer title="New Releases" />
-      </Box>
-      <Box sx={{ bgcolor: '#F0F0F0', width: '1000px', p: 2, mt: 3 }}>
-        <BookContainer title="Recommended for You" />
+      <Box sx={{ bgcolor: '#F5F5F5', width: '1000px', p: 2, mt: 3, zIndex: 0 }}>
+        <BookContainer title="Random suggestions" rand={true} />
       </Box>
     </Box>
   );
