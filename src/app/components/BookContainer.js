@@ -9,7 +9,9 @@ const BookContainer = ({ title, rand }) => {
 
   useEffect(() => {
     const foo = async () => {
-      const fetchedRecords = await pb.collection('books').getFullList();
+      const fetchedRecords = await pb
+        .collection('books')
+        .getFullList(200, { sort: '-created' });
 
       setRecords(fetchedRecords);
     };
