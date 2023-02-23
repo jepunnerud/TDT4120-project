@@ -2,23 +2,29 @@ import React, { useEffect } from 'react';
 import { Box, Button, Typography } from '@material-ui/core';
 import BookCard from './BookCard';
 import pb from '../(lib)/pocketbase';
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 
-const BookContainer = ({ title }) => {
+const BookContainer = ({ title, rand }) => {
   const [records, setRecords] = useState([1, 2, 3, 4]);
 
   useEffect(() => {
     const foo = async () => {
-      const fetchedRecords = await pb
-        .collection('books')
-        .getFullList(200 /* batch size */, {
-          sort: '-created',
-        });
+      const fetchedRecords = await pb.collection('books').getFullList();
 
-      setRecords(fetchedRecords.slice(0, 4));
+      setRecords(fetchedRecords);
     };
     foo();
   }, []);
+
+  let count = 0;
+
+  function getRndInteger(min, max) {
+    if (rand) {
+      return Math.floor(Math.random() * (max - min)) + min;
+    }
+    count += 1;
+    return count - 1;
+  }
 
   return (
     <Box>
@@ -34,10 +40,10 @@ const BookContainer = ({ title }) => {
         flexWrap="wrap"
         justifyContent="space-around"
       >
-        <BookCard bookid={records[0].id} />
-        <BookCard bookid={records[1].id} />
-        <BookCard bookid={records[2].id} />
-        <BookCard bookid={records[3].id} />
+        <BookCard bookid={records[getRndInteger(0, records.length - 1)].id} />
+        <BookCard bookid={records[getRndInteger(0, records.length - 1)].id} />
+        <BookCard bookid={records[getRndInteger(0, records.length - 1)].id} />
+        <BookCard bookid={records[getRndInteger(0, records.length - 1)].id} />
       </Box>
     </Box>
   );

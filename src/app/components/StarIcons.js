@@ -1,7 +1,7 @@
 import StarIcon from '@material-ui/icons/Star';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import { useState } from 'react';
-import { makeStyles, Typography, Button } from '@material-ui/core';
+import { makeStyles, Button } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function StarIcons(props) {
-  const initialRating = 4; //får ikke til å bruke props.rating
+  const initialRating = 4;
   const classes = useStyles();
   const [rating, setRating] = useState(initialRating);
   const [editable, setEditable] = useState(false);

@@ -60,6 +60,17 @@ export async function getAuthorById(id) {
   return auth;
 }
 
+// export async function getBooksFromAuthor(author) {
+//   const allBooks = await pb.collection('books').getFullList();
+//   const books = [];
+//   allBooks.forEach((book) => {
+//     if (book.author == author) {
+//       books.push(book.id);
+//     }
+//   });
+//   return books;
+// }
+
 export async function getBooksAndAuthors() {
   const books = await pb.collection('books').getFullList();
   const authors = await pb.collection('authors').getFullList();
