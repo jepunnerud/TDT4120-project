@@ -3,9 +3,6 @@ import StarIcons from '@/app/components/StarIcons';
 import { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import ClearIcon from '@mui/icons-material/Clear';
-import { useRouter } from 'next/navigation';
 import pb from '@/app/(lib)/pocketbase';
 import LinkableComponent from '@/app/components/LinkableComponent';
 
@@ -19,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Book({ params }) {
-  const router = useRouter();
   const classes = useStyles();
   const [records, setRecords] = useState({});
 
@@ -33,18 +29,8 @@ function Book({ params }) {
     foo();
   }, []);
 
-  const gotoAuthorPage = (id) => {
-    window.location.href = `http://localhost:3000/authorpage/${id}`;
-  };
-
   return (
     <>
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <div></div>
-        <IconButton color="primary" onClick={() => router.back()}>
-          <ClearIcon style={{ fontSize: 40 }} />
-        </IconButton>
-      </div>
       <div id="gridContainer">
         <div className="item tall">
           <img
@@ -79,7 +65,7 @@ function Book({ params }) {
         </div>
         <div className="item">
           <p className="book-text">Genre: {records && records.genre}</p>
-          <p>First published: {records.length > 0 && records.releaseyear}</p>
+          <p>First published: {records.releaseyear}</p>
           <p></p>
         </div>
       </div>
