@@ -5,18 +5,30 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import Tooltip from '@mui/material/Tooltip';
 import Logout from '@mui/icons-material/Logout';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import MenuBookIcon from '@mui/icons-material/MenuBook';
 import { useState, Fragment } from 'react';
+import pb from './(lib)/pocketbase';
+import { useRouter } from 'next/navigation';
 
 export default function AccountMenu() {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+  const router = useRouter();
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+  const handleAuth = () => {
+    pb.authStore.isValid ? logout() : router.push('/signin');
+  };
+
+  const logout = () => {
+    pb.authStore.clear();
+    window.location.reload();
+  };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
+
   return (
     <Fragment>
       <Tooltip title="Profile">
@@ -69,17 +81,20 @@ export default function AccountMenu() {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem>
+        {/* <MenuItem>
           <ListItemIcon>
             <MenuBookIcon fontSize="small" />
           </ListItemIcon>
           My library
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
+        </MenuItem> */}
+        <MenuItem onClick={handleAuth}>
           <ListItemIcon>
-            <Logout fontSize="small" />
+            <Logout
+              fontSize="small"
+              // onClick={pb.authStore.isValid ? logout() : login()}
+            />
           </ListItemIcon>
-          Logout
+          {pb.authStore.isValid ? 'Log out' : 'Log in'}
         </MenuItem>
       </Menu>
     </Fragment>
