@@ -6,7 +6,6 @@ import Rows from '../components/Rows';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import LinkableComponent from '../components/LinkableComponent';
 
 export default () => {
   const [isLoading, setLoading] = useState(false);
@@ -18,13 +17,20 @@ export default () => {
     try {
       await pb
         .collection('users')
-        .authWithPassword(data.username, data.password);
-      await setTimeout(() => {}, 500);
-      setLoading(false);
-      window.alert('Successfully signed in!');
-      router.push('/');
+        .create({
+          username: data.username,
+          password: data.password,
+          passwordConfirm: data.passwordConfirm,
+        })
+        .then(() => {
+          pb.collection('users').authWithPassword(data.username, data.password);
+          setTimeout(() => {}, 500);
+          setLoading(false);
+          window.alert('New user created!');
+          router.push('/');
+        });
     } catch (error) {
-      alert('Incorrect username or password!');
+      alert(error);
     }
     setLoading(false);
   };
@@ -44,6 +50,13 @@ export default () => {
       width="80%"
       {...register('password')}
     />,
+    <Input.Password
+      bordered
+      labelPlaceholder="Please confirm your password"
+      color="#22b573"
+      width="80%"
+      {...register('passwordConfirm')}
+    />,
   ];
 
   return (
@@ -62,27 +75,13 @@ export default () => {
               <Button
                 css={{
                   position: 'fixed',
-                  left: 100,
+                  left: 200,
                   backgroundColor: '#22b573',
                 }}
                 type="submit"
               >
-                {isLoading ? <Loading /> : 'Log in'}
+                {isLoading ? <Loading /> : 'Create user'}
               </Button>
-              <LinkableComponent
-                component={
-                  <Button
-                    css={{
-                      position: 'fixed',
-                      right: 100,
-                      backgroundColor: '#22b573',
-                    }}
-                  >
-                    Create new user
-                  </Button>
-                }
-                link="createuser"
-              />
             </form>
           </Row>
           <Spacer y={2}></Spacer>
