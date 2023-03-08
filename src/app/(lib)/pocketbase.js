@@ -60,17 +60,6 @@ export async function getAuthorById(id) {
   return auth;
 }
 
-// export async function getBooksFromAuthor(author) {
-//   const allBooks = await pb.collection('books').getFullList();
-//   const books = [];
-//   allBooks.forEach((book) => {
-//     if (book.author == author) {
-//       books.push(book.id);
-//     }
-//   });
-//   return books;
-// }
-
 export async function getBooksAndAuthors() {
   const books = await pb.collection('books').getFullList();
   const authors = await pb.collection('authors').getFullList();
@@ -94,6 +83,20 @@ export async function getBooksAndAuthors() {
     });
   });
   return res;
+}
+
+export async function getUserById(id) {
+  const user = [];
+  const res = await pb.collection('users').getFullList();
+  res.forEach((record) => {
+    if (record.id === id) {
+      user.push(record.username);
+      user.push(record.id);
+      user.push(record.admin);
+      console.log(record.admin);
+    }
+  });
+  return user;
 }
 
 export async function addAuthor(author) {
