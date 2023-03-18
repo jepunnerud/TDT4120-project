@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 import { IconButton } from '@mui/material';
-import { ArrowBack, BookmarkSharp } from '@mui/icons-material';
+import { ArrowBack } from '@mui/icons-material';
 import { ArrowForward } from '@mui/icons-material';
 import BookCard from '@/app/components/BookCard';
 import { useState } from 'react';

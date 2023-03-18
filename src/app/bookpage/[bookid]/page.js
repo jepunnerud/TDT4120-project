@@ -1,30 +1,25 @@
 'use client';
 import StarIcons from '@/app/components/StarIcons';
 import { useEffect, useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import pb from '@/app/(lib)/pocketbase';
+import { Button } from '@nextui-org/react';
+import pb, { getAuthorById } from '@/app/(lib)/pocketbase';
 import LinkableComponent from '@/app/components/LinkableComponent';
 
-const useStyles = makeStyles((theme) => ({
-  button: {
-    position: 'relative',
-    top: 0,
-    left: 0,
-    backgroundColor: '#22b573',
-  },
-}));
-
 function Book({ params }) {
-  const classes = useStyles();
   const [records, setRecords] = useState({});
+  const [author, setAuthor] = useState([]);
+
+  const fetchAuthor = async (id) => {
+    let author;
+    await Promise.resolve(getAuthorById(id)).then((value) => (author = value));
+    return author;
+  };
 
   useEffect(() => {
     const foo = async () => {
       const fetchedRecords = await pb.collection('books').getOne(params.bookid);
-
       setRecords(fetchedRecords);
-      console.log(fetchedRecords);
+      fetchAuthor(fetchedRecords.author).then((value) => setAuthor(value));
     };
     foo();
   }, []);
@@ -45,7 +40,7 @@ function Book({ params }) {
           <h1> {records && records.title}</h1>
           <LinkableComponent
             link={'/authorpage/' + records.author}
-            component={<h3>by {records.author}</h3>}
+            component={<h3>by {author[0]}</h3>}
           ></LinkableComponent>
         </div>
         <div className="item">
@@ -53,11 +48,12 @@ function Book({ params }) {
         </div>
         <div className="item">
           <Button
-            className={classes.button}
-            variant="contained"
-            color="primary"
+            css={{ backgroundColor: '#22b573' }}
+            width={10}
+            auto
+            disabled={!pb.authStore.isValid}
           >
-            Add to my library
+            Add a rating
           </Button>
         </div>
         <div className="item">

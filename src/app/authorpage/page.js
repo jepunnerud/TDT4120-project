@@ -1,5 +1,4 @@
 'use client';
-import About from './AboutSection';
 import { User } from '@nextui-org/react';
 import { Badge, Grid } from '@nextui-org/react';
 import Box from '@mui/material/Box';

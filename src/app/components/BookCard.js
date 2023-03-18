@@ -10,12 +10,15 @@ import {
 import { Rating } from '@material-ui/lab';
 import { useState } from 'react';
 import pb from '../(lib)/pocketbase';
+import { useRouter } from 'next/navigation';
 pb.autoCancellation(false);
 
 const BookCard = ({ bookid }) => {
   const [book, setBook] = useState({ rating: 0 });
+  const router = useRouter();
   const clickOnBook = () => {
-    window.location.href = `http://localhost:3000/bookpage/${bookid}`;
+    // window.location.href = `http://localhost:3000/bookpage/${bookid}`;
+    router.push(`/bookpage/${bookid}`);
   };
 
   useEffect(() => {

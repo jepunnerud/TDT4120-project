@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Box, Button, Typography } from '@material-ui/core';
+import { Box, Typography } from '@material-ui/core';
 import BookCard from './BookCard';
 import pb from '../(lib)/pocketbase';
 import { useState } from 'react';
@@ -32,9 +32,6 @@ const BookContainer = ({ title, rand }) => {
     <Box>
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <Typography variant="h4">{title}</Typography>
-        <Button variant="outlined" color="default">
-          View All
-        </Button>
       </Box>
       <Box
         display="flex"
