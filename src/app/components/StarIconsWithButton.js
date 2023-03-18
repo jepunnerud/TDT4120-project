@@ -1,7 +1,7 @@
 import StarIcon from '@material-ui/icons/Star';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import { useState } from 'react';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, Button } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,19 +17,28 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.secondary.main,
     fontSize: 50,
     marginRight: theme.spacing(1),
+    cursor: 'pointer',
   },
   starEmpty: {
     color: theme.palette.grey[400],
     fontSize: 50,
     marginRight: theme.spacing(1),
+    cursor: 'pointer',
   },
   text: {
     fontSize: 20,
     marginLeft: 20,
   },
+  btnSave: {
+    marginLeft: '13px',
+  },
+  btn: {
+    marginLeft: '13px',
+    backgroundColor: '#22b573',
+  },
 }));
 
-function StarIcons() {
+function StarIconsWithButton() {
   const initialRating = 4;
   const classes = useStyles();
   const [rating, setRating] = useState(initialRating);
@@ -72,9 +81,28 @@ function StarIcons() {
             return star;
           })}
         </div>
+        {!editable ? (
+          <Button
+            className={classes.btn}
+            variant="contained"
+            color="primary"
+            onClick={handleRateClick}
+          >
+            Rate
+          </Button>
+        ) : (
+          <Button
+            className={classes.btnSave}
+            variant="contained"
+            color="primary"
+            onClick={handleSaveClick}
+          >
+            Save
+          </Button>
+        )}
       </div>
     </>
   );
 }
 
-export default StarIcons;
+export default StarIconsWithButton;

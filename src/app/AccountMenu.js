@@ -81,18 +81,9 @@ export default function AccountMenu() {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        {/* <MenuItem>
-          <ListItemIcon>
-            <MenuBookIcon fontSize="small" />
-          </ListItemIcon>
-          My library
-        </MenuItem> */}
         <MenuItem onClick={handleAuth}>
           <ListItemIcon>
-            <Logout
-              fontSize="small"
-              // onClick={pb.authStore.isValid ? logout() : login()}
-            />
+            <Logout fontSize="small" />
           </ListItemIcon>
           {pb.authStore.isValid ? 'Log out' : 'Log in'}
         </MenuItem>

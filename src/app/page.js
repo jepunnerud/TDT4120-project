@@ -2,7 +2,6 @@
 import React from 'react';
 import BookContainer from './components/BookContainer';
 import { Box } from '@material-ui/core';
-import pb from './(lib)/pocketbase';
 
 const Homepage = () => {
   return (
@@ -13,7 +12,6 @@ const Homepage = () => {
         alignItems: 'center',
       }}
     >
-      <h1>Logged in: {pb.authStore.isValid.toString()}</h1>
       <Box sx={{ bgcolor: '#F5F5F5', width: '1000px', p: 2, zIndex: 0 }}>
         <BookContainer title="Newly added" rand={false} />
       </Box>

@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import Slideshow from './Slideshow';
 import StarIcons from '@/app/components/StarIcons';
 import pb from '@/app/(lib)/pocketbase';
-
 import img from './download.jpeg';
 
 function Author({ params }) {

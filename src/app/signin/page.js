@@ -47,47 +47,42 @@ export default () => {
   ];
 
   return (
-    <>
-      <h1>Logged in: {pb.authStore.isValid.toString()}</h1>
-      <Card css={{ mw: '600px', minHeight: '600px', margin: 'auto' }}>
-        <Card.Body>
-          <h1
-            style={{ textAlign: 'center', color: '#22b573', marginBottom: 40 }}
-          >
-            Fill in username and password to log in or sign up
-          </h1>
-          <Rows components={components} gap={2}></Rows>
-          <Row>
-            <form onSubmit={handleSubmit(submit)}>
-              <Button
-                css={{
-                  position: 'fixed',
-                  left: 100,
-                  backgroundColor: '#22b573',
-                }}
-                type="submit"
-              >
-                {isLoading ? <Loading /> : 'Log in'}
-              </Button>
-              <LinkableComponent
-                component={
-                  <Button
-                    css={{
-                      position: 'fixed',
-                      right: 100,
-                      backgroundColor: '#22b573',
-                    }}
-                  >
-                    Create new user
-                  </Button>
-                }
-                link="createuser"
-              />
-            </form>
-          </Row>
-          <Spacer y={2}></Spacer>
-        </Card.Body>
-      </Card>
-    </>
+    <Card css={{ mw: '600px', minHeight: '600px', margin: 'auto' }}>
+      <Card.Body>
+        <h1 style={{ textAlign: 'center', color: '#22b573', marginBottom: 40 }}>
+          Fill in username and password to log in or sign up
+        </h1>
+        <Rows components={components} gap={2}></Rows>
+        <Row>
+          <form onSubmit={handleSubmit(submit)}>
+            <Button
+              css={{
+                position: 'fixed',
+                left: 100,
+                backgroundColor: '#22b573',
+              }}
+              type="submit"
+            >
+              {isLoading ? <Loading /> : 'Log in'}
+            </Button>
+            <LinkableComponent
+              component={
+                <Button
+                  css={{
+                    position: 'fixed',
+                    right: 100,
+                    backgroundColor: '#22b573',
+                  }}
+                >
+                  Create new user
+                </Button>
+              }
+              link="createuser"
+            />
+          </form>
+        </Row>
+        <Spacer y={2}></Spacer>
+      </Card.Body>
+    </Card>
   );
 };
