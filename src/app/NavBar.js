@@ -6,47 +6,8 @@ import Image from 'next/image';
 import LinkableComponent from './components/LinkableComponent';
 import AccountMenu from './AccountMenu';
 import { Button } from '@nextui-org/react';
-import pb, { getUserById } from './(lib)/pocketbase';
-import { useEffect, useState } from 'react';
 
 export default function NavBar() {
-  // const [admin, setAdmin] = useState(false);
-
-  // useEffect(() => {
-  //   const a = async () => {
-  //     if (pb.authStore.isValid) {
-  //       const user = await getUserById(pb.authStore.model.id);
-  //       setAdmin(user[2]);
-  //     }
-  //     console.log(admin);
-  //   };
-  //   a();
-  // }, []);
-
-  // const chooseComponent = () => {
-  //   if (admin)
-  //     return (
-  //       <LinkableComponent
-  //         link="/newbook"
-  //         component={
-  //           <Button
-  //             css={{
-  //               position: 'absolute',
-  //               top: 15,
-  //               right: 90,
-  //               backgroundColor: '#22b573',
-  //             }}
-  //             auto
-  //             width={10}
-  //           >
-  //             New Book
-  //           </Button>
-  //         }
-  //       />
-  //     );
-  //   return;
-  // };
-
   return (
     <Box
       sx={{

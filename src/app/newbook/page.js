@@ -187,11 +187,26 @@ export default () => {
           <Spacer y={2}></Spacer>
         </Card.Body>
       );
-    } else return <h1>Must be admin to create a new book</h1>;
+    } else
+      return (
+        <h1 style={{ marginTop: '250px', color: '#22b573' }}>
+          Must be admin to add a new book
+        </h1>
+      );
   };
 
   return (
-    <Card css={{ mw: '800px', minHeight: '600px', margin: 'auto', zIndex: 0 }}>
+    <Card
+      css={{
+        mw: '800px',
+        minHeight: '600px',
+        margin: 'auto',
+        zIndex: 0,
+        display: 'flex',
+        alignContent: 'center',
+        textAlign: 'center',
+      }}
+    >
       {chooseComponents()}
     </Card>
   );

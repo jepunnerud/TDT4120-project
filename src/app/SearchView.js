@@ -1,4 +1,3 @@
-import { display } from '@mui/system';
 import LinkableComponent from './components/LinkableComponent';
 import './globals.css';
 
