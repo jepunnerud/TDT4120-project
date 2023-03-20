@@ -15,13 +15,13 @@ const useStyles = makeStyles((theme) => ({
   },
   star: {
     color: theme.palette.secondary.main,
-    fontSize: 50,
+    fontSize: 40,
     marginRight: theme.spacing(1),
     cursor: 'pointer',
   },
   starEmpty: {
     color: theme.palette.grey[400],
-    fontSize: 50,
+    fontSize: 40,
     marginRight: theme.spacing(1),
     cursor: 'pointer',
   },
