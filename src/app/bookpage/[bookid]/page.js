@@ -1,9 +1,11 @@
 'use client';
 import StarIcons from '@/app/components/StarIcons';
 import { useEffect, useState } from 'react';
-import { Button } from '@nextui-org/react';
+import { Button, Popover } from '@nextui-org/react';
 import pb, { getAuthorById } from '@/app/(lib)/pocketbase';
 import LinkableComponent from '@/app/components/LinkableComponent';
+import AddReviewView from '@/app/components/AddReviewView';
+import CustomCard from '@/app/components/CustomCard';
 
 function Book({ params }) {
   const [records, setRecords] = useState({});
@@ -47,14 +49,21 @@ function Book({ params }) {
           {records && <StarIcons rating={records.rating}></StarIcons>}
         </div>
         <div className="item">
-          <Button
-            css={{ backgroundColor: '#22b573' }}
-            width={10}
-            auto
-            disabled={!pb.authStore.isValid}
-          >
-            Add a rating
-          </Button>
+          <Popover>
+            <Popover.Trigger>
+              <Button
+                css={{ backgroundColor: '#22b573' }}
+                width={10}
+                auto
+                disabled={!pb.authStore.isValid}
+              >
+                Add a rating
+              </Button>
+            </Popover.Trigger>
+            <Popover.Content>
+              <AddReviewView />
+            </Popover.Content>
+          </Popover>
         </div>
         <div className="item">
           <p>{records && records.description}</p>
@@ -63,6 +72,9 @@ function Book({ params }) {
           <p className="book-text">Genre: {records && records.genre}</p>
           <p>First published: {records.releaseyear}</p>
           <p></p>
+        </div>
+        <div style={{ position: 'absolute', right: 100, top: 200 }}>
+          <CustomCard></CustomCard>
         </div>
       </div>
     </>
