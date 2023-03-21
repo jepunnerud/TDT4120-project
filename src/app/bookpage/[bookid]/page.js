@@ -61,7 +61,7 @@ function Book({ params }) {
               </Button>
             </Popover.Trigger>
             <Popover.Content>
-              <AddReviewView />
+              <AddReviewView bookid={params.bookid} />
             </Popover.Content>
           </Popover>
         </div>

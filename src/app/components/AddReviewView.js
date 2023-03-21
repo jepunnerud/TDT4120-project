@@ -2,8 +2,9 @@ import { Card, Spacer, Textarea } from '@nextui-org/react';
 import StarIconsWithButton from './StarIconsWithButton';
 import { useState } from 'react';
 
-const AddReviewView = () => {
+const AddReviewView = (prop) => {
   const [description, setDescription] = useState('');
+  const [bookid, setBookid] = useState(prop.bookid);
 
   return (
     <Card
@@ -14,7 +15,7 @@ const AddReviewView = () => {
       }}
     >
       <Card.Body>
-        <StarIconsWithButton />
+        <StarIconsWithButton bookid={bookid} description={description} />
         <Spacer y={2}></Spacer>
         <Textarea
           id="review"
