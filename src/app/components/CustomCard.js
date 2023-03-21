@@ -3,8 +3,22 @@ import StarIconsWithButton from './StarIconsWithButton';
 import { useState } from 'react';
 import ReviewView from './ReviewView';
 
-const CustomCard = () => {
-  const [description, setDescription] = useState('');
+const CustomCard = (props) => {
+  console.log(props.reviews, 'this is it');
+
+  const reviewViews = props.reviews.length
+    ? props.reviews.map((review, index) => (
+        <div key={index}>
+          <ReviewView rating={review.rating} text={review.review}></ReviewView>
+          <Spacer y={1}></Spacer>
+        </div>
+      ))
+    : [
+        <div key="default">
+          <ReviewView rating={0} text={'No reviews yet'}></ReviewView>
+          <Spacer y={1}></Spacer>
+        </div>,
+      ];
 
   return (
     <div className="parent-div">
@@ -18,17 +32,7 @@ const CustomCard = () => {
           overflowY: 'scroll',
         }}
       >
-        <Card.Body>
-          <ReviewView></ReviewView>
-          <Spacer y={1}></Spacer>
-          <ReviewView></ReviewView>
-          <Spacer y={1}></Spacer>
-          <ReviewView></ReviewView>
-          <Spacer y={1}></Spacer>
-          <ReviewView></ReviewView>
-          <Spacer y={1}></Spacer>
-          <ReviewView></ReviewView>
-        </Card.Body>
+        <Card.Body>{reviewViews}</Card.Body>
       </Card>
     </div>
   );
