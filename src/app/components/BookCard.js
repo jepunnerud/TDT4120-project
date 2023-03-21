@@ -15,6 +15,7 @@ pb.autoCancellation(false);
 
 const BookCard = ({ bookid }) => {
   const [book, setBook] = useState({ rating: 0 });
+  const [avgRating, setAvgRating] = useState(null);
   const router = useRouter();
   const clickOnBook = () => {
     // window.location.href = `http://localhost:3000/bookpage/${bookid}`;
@@ -26,6 +27,21 @@ const BookCard = ({ bookid }) => {
       if (bookid != undefined) {
         const record = await pb.collection('books').getOne(bookid);
         setBook(record);
+
+        const fetchedRatings = await pb
+          .collection('ratings')
+          .getFullList(200, { filter: `book_id = "${bookid}"` });
+
+        if (fetchedRatings.length > 0) {
+          const sum = fetchedRatings.reduce(
+            (acc, current) => acc + current.rating,
+            0
+          );
+          const averageRating = Math.round(sum / fetchedRatings.length);
+          setAvgRating(averageRating);
+        } else {
+          setAvgRating(0);
+        }
       }
     };
     loadBookInfo();
@@ -51,9 +67,9 @@ const BookCard = ({ bookid }) => {
           {book.title}
         </Typography>
         <Box display="flex" alignItems="center">
-          <Rating name="rating" value={book.rating} max={5} readOnly />
+          <Rating name="rating" value={avgRating} max={5} readOnly />
           <Typography variant="body2" color="text.secondary">
-            {book.rating}/5
+            {avgRating}/5
           </Typography>
         </Box>
       </CardContent>
