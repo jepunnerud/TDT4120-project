@@ -29,10 +29,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function StarIcons() {
-  const initialRating = 4;
+function StarIcons(props) {
   const classes = useStyles();
-  const [rating, setRating] = useState(initialRating);
   const [editable, setEditable] = useState(false);
 
   const handleClick = (value) => {
@@ -54,7 +52,7 @@ function StarIcons() {
         <div className={classes.stars}>
           {[1, 2, 3, 4, 5].map((value) => {
             const star =
-              value <= rating ? (
+              value <= props.rating ? (
                 <StarIcon
                   className={classes.star}
                   onClick={() => {

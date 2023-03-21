@@ -10,6 +10,9 @@ import CustomCard from '@/app/components/CustomCard';
 function Book({ params }) {
   const [records, setRecords] = useState({});
   const [author, setAuthor] = useState([]);
+  const [avgRating, setAvgRating] = useState(null);
+  const [reviews, setReviews] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchAuthor = async (id) => {
     let author;
@@ -21,10 +24,31 @@ function Book({ params }) {
     const foo = async () => {
       const fetchedRecords = await pb.collection('books').getOne(params.bookid);
       setRecords(fetchedRecords);
+
       fetchAuthor(fetchedRecords.author).then((value) => setAuthor(value));
+      const fetchedRatings = await pb.collection('ratings').getFullList(200, {
+        filter: `book_id = "${params.bookid}"`,
+      });
+
+      setReviews(fetchedRatings);
+
+      if (fetchedRatings.length > 0) {
+        const sum = fetchedRatings.reduce(
+          (acc, current) => acc + current.rating,
+          0
+        );
+        const averageRating = sum / fetchedRatings.length;
+        setAvgRating(averageRating);
+      } else {
+        setAvgRating(0);
+      }
+      setIsLoading(false);
     };
     foo();
-  }, []);
+  }, [params.bookid, avgRating]);
+
+  console.log(reviews, 'this is fetched rating in book');
+  console.log(avgRating, 'this is avg reting');
 
   return (
     <>
@@ -46,7 +70,7 @@ function Book({ params }) {
           ></LinkableComponent>
         </div>
         <div className="item">
-          {records && <StarIcons rating={records.rating}></StarIcons>}
+          {records && <StarIcons rating={avgRating}></StarIcons>}
         </div>
         <div className="item">
           <Popover>
@@ -61,7 +85,7 @@ function Book({ params }) {
               </Button>
             </Popover.Trigger>
             <Popover.Content>
-              <AddReviewView />
+              <AddReviewView bookid={params.bookid} />
             </Popover.Content>
           </Popover>
         </div>
@@ -74,7 +98,7 @@ function Book({ params }) {
           <p></p>
         </div>
         <div style={{ position: 'absolute', right: 100, top: 200 }}>
-          <CustomCard></CustomCard>
+          <CustomCard reviews={reviews}></CustomCard>
         </div>
       </div>
     </>

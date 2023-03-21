@@ -2,6 +2,7 @@ import StarIcon from '@material-ui/icons/Star';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import { useState } from 'react';
 import { makeStyles, Button } from '@material-ui/core';
+import pb from '../(lib)/pocketbase';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,11 +39,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function StarIconsWithButton() {
+function StarIconsWithButton(props) {
   const initialRating = 4;
   const classes = useStyles();
   const [rating, setRating] = useState(initialRating);
   const [editable, setEditable] = useState(false);
+  const [bookid, setBookid] = useState(props.bookid);
 
   const handleClick = (value) => {
     setRating(value);
@@ -53,7 +55,33 @@ function StarIconsWithButton() {
     setEditable(true);
   };
 
-  const handleSaveClick = () => {
+  const handleSaveClick = async () => {
+    if (pb.authStore.isValid) {
+      const data = {
+        book_id: bookid,
+        user_id: pb.authStore.model.id,
+        rating: rating,
+        review: props.description,
+      };
+      console.log(data.review);
+      try {
+        const fetchedRatings = await pb.collection('ratings').getFullList(200, {
+          filter: `book_id = "${bookid}" && user_id = "${pb.authStore.model.id}"`,
+        });
+
+        if (fetchedRatings.length === 1) {
+          await pb
+            .collection('ratings')
+            .update(`${fetchedRatings[0].id}`, data);
+          console.log('rating have been updated');
+        } else {
+          await pb.collection('ratings').create(data);
+          console.log('ratings have been registered');
+        }
+      } catch (error) {
+        console.log('record could not be registered or created');
+      }
+    }
     setEditable(false);
   };
 
