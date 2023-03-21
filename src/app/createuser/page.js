@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-export default () => {
+const CreateUser = () => {
   const [isLoading, setLoading] = useState(false);
   const { register, handleSubmit } = useForm();
   const router = useRouter();
@@ -37,6 +37,7 @@ export default () => {
 
   const components = [
     <Input
+      key="0"
       bordered
       labelPlaceholder="Username"
       color="#22b573"
@@ -44,6 +45,7 @@ export default () => {
       {...register('username')}
     />,
     <Input.Password
+      key="1"
       bordered
       labelPlaceholder="Password"
       color="#22b573"
@@ -51,6 +53,7 @@ export default () => {
       {...register('password')}
     />,
     <Input.Password
+      key="2"
       bordered
       labelPlaceholder="Please confirm your password"
       color="#22b573"
@@ -85,3 +88,5 @@ export default () => {
     </Card>
   );
 };
+
+export default CreateUser;

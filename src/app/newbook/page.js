@@ -20,7 +20,7 @@ import pb, {
 
 const year = new Date().getFullYear();
 
-export default () => {
+const NewBook = () => {
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   const [title, setTitle] = useState(null);
   const [author, setAuthor] = useState(null);
@@ -95,6 +95,7 @@ export default () => {
 
   const components = [
     <Input
+      key="0"
       id="title"
       bordered
       labelPlaceholder="Title"
@@ -103,6 +104,7 @@ export default () => {
       onChange={(e) => setTitle(e.target.value)}
     />,
     <Input
+      key="1"
       id="author"
       bordered
       labelPlaceholder="Author"
@@ -111,6 +113,7 @@ export default () => {
       onChange={(e) => setAuthor(e.target.value)}
     />,
     <Textarea
+      key="2"
       id="description"
       bordered
       labelPlaceholder="Description"
@@ -211,3 +214,5 @@ export default () => {
     </Card>
   );
 };
+
+export default NewBook;
