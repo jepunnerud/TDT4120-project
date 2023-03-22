@@ -1,11 +1,7 @@
-import { Card, Spacer, Textarea } from '@nextui-org/react';
-import StarIconsWithButton from './StarIconsWithButton';
-import { useState } from 'react';
+import { Card, Spacer } from '@nextui-org/react';
 import ReviewView from './ReviewView';
 
 const CustomCard = (props) => {
-  console.log(props.reviews, 'this is it');
-
   const reviewViews = props.reviews.length
     ? props.reviews.map((review, index) => (
         <div key={index}>
@@ -13,12 +9,7 @@ const CustomCard = (props) => {
           <Spacer y={1}></Spacer>
         </div>
       ))
-    : [
-        <div key="default">
-          <ReviewView rating={0} text={'No reviews yet'}></ReviewView>
-          <Spacer y={1}></Spacer>
-        </div>,
-      ];
+    : [<h2 key="default">No reviews yet provided</h2>];
 
   return (
     <div className="parent-div">

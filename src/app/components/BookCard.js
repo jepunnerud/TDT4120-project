@@ -18,7 +18,6 @@ const BookCard = ({ bookid }) => {
   const [avgRating, setAvgRating] = useState(null);
   const router = useRouter();
   const clickOnBook = () => {
-    // window.location.href = `http://localhost:3000/bookpage/${bookid}`;
     router.push(`/bookpage/${bookid}`);
   };
 

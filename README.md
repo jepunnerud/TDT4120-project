@@ -6,7 +6,7 @@ If you do not have yarn on your machine, cd to your machine's root folder and do
 npm install --global yarn
 ```
 
-To run the backend development server, cd to /bookhub and do:
+To run the backend server, cd to /bookhub and do:
 
 ```
 ./pocketbase serve
@@ -25,6 +25,13 @@ If your system runs an arm64 version of MacOS (M1, M2), do:
 ```
 
 Open [http://127.0.0.1:8090/\_/](http://127.0.0.1:8090/_/) with your browser to get to the PocketBase admin ui.
+
+To run the frontend deployment server, cd to /bookhub and do:
+
+```
+npx next build
+npx next start
+```
 
 To run the frontend development server, cd to /bookhub and do:
 

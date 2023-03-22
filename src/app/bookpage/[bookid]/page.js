@@ -12,7 +12,6 @@ function Book({ params }) {
   const [author, setAuthor] = useState([]);
   const [avgRating, setAvgRating] = useState(null);
   const [reviews, setReviews] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
 
   const fetchAuthor = async (id) => {
     let author;
@@ -42,7 +41,6 @@ function Book({ params }) {
       } else {
         setAvgRating(0);
       }
-      setIsLoading(false);
     };
     foo();
   }, [params.bookid, avgRating]);
@@ -77,6 +75,7 @@ function Book({ params }) {
             <Popover.Trigger>
               <Button
                 css={{ backgroundColor: '#22b573' }}
+                color="success"
                 width={10}
                 auto
                 disabled={!pb.authStore.isValid}
@@ -89,7 +88,7 @@ function Book({ params }) {
             </Popover.Content>
           </Popover>
         </div>
-        <div className="item">
+        <div className="item" style={{ maxWidth: 550 }}>
           <p>{records && records.description}</p>
         </div>
         <div className="item">
