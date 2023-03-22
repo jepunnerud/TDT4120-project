@@ -47,7 +47,8 @@ body {
 #gridContainer {
   display: grid;
   grid-template-columns: 18rem 35rem 23rem;
-  grid-template-rows: 3fr 2fr 5fr; /* the second row is twice as tall as the first row */
+  grid-template-rows: 1.5fr 1.5fr 2fr 1fr; /* the second row is twice as tall as the first row */
+  grid-row-gap: 2.5em;
   margin: 5em;
   column-gap: 2.5em;
 }
@@ -83,11 +84,21 @@ body {
   font-size: 20px;
   margin-top: 0;
 }
+.item > p.itemRatingText {
+  font-size: 23px;
+  margin-top: 10px;
+}
 
 .item > h1 {
   margin-top: 0;
   font-size: 25px;
 }
+
+.itemRating {
+  display: grid;
+  grid-template-columns: 1fr 3.1fr;
+}
+
 .menu-container {
   max-height: 200px;
   overflow-y: auto;

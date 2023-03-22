@@ -6,12 +6,14 @@ import pb, { getAuthorById } from '@/app/(lib)/pocketbase';
 import LinkableComponent from '@/app/components/LinkableComponent';
 import AddReviewView from '@/app/components/AddReviewView';
 import CustomCard from '@/app/components/CustomCard';
+import ProfessionalStarIcons from '@/app/components/ProfessionalStarIcons';
 
 function Book({ params }) {
   const [records, setRecords] = useState({});
   const [author, setAuthor] = useState([]);
   const [avgRating, setAvgRating] = useState(null);
   const [reviews, setReviews] = useState({});
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const fetchAuthor = async (id) => {
     let author;
@@ -43,10 +45,13 @@ function Book({ params }) {
       }
     };
     foo();
-  }, [params.bookid, avgRating]);
 
-  console.log(reviews, 'this is fetched rating in book');
-  console.log(avgRating, 'this is avg reting');
+    if (pb.authStore.isValid) {
+      if (pb.authStore.model.admin) {
+        setIsAdmin(true);
+      }
+    }
+  }, []); //[params.bookid, avgRating]
 
   return (
     <>
@@ -67,8 +72,19 @@ function Book({ params }) {
             component={<h3>by {author[0]}</h3>}
           ></LinkableComponent>
         </div>
-        <div className="item">
-          {records && <StarIcons rating={avgRating}></StarIcons>}
+        {/* <div className="item">
+          {records && <StarIcons rating={avgRating}></StarIcons>} */}
+        <div className="item itemRating">
+          <p className="itemRatingText">Professional rating:</p>
+          {records && (
+            <ProfessionalStarIcons
+              isAdmin={isAdmin}
+              bookId={params.bookid}
+              rating={records.rating}
+            ></ProfessionalStarIcons>
+          )}
+          <p className="itemRatingText">User rating: </p>
+          {records && <StarIcons rating={records.rating}></StarIcons>}
         </div>
         <div className="item">
           <Popover>
