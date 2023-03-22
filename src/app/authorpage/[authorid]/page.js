@@ -35,8 +35,13 @@ function Author({ params }) {
   return (
     <>
       <div id="authorGridContainer">
-        <div style={{ width: 500 }}>
-          <p className="authorText">{records && records.name}</p>
+        <div style={{ display: 'flex', alignContent: 'left' }}>
+          <div style={{ width: 500, minWidth: 500 }}>
+            <p className="authorText">{records && records.name}</p>
+          </div>
+          <div style={{ position: 'relative' }}>
+            <StarIcons rating={3}></StarIcons>
+          </div>
         </div>
         <div className="authorSlideshow">
           <div id="booksSlideshow">

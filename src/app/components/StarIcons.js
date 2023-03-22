@@ -38,14 +38,6 @@ function StarIcons(props) {
     console.log(value);
   };
 
-  const handleRateClick = () => {
-    setEditable(true);
-  };
-
-  const handleSaveClick = () => {
-    setEditable(false);
-  };
-
   return (
     <>
       <div className={classes.root}>
