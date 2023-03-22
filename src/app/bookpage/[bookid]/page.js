@@ -38,7 +38,7 @@ function Book({ params }) {
           (acc, current) => acc + current.rating,
           0
         );
-        const averageRating = sum / fetchedRatings.length;
+        const averageRating = Math.round(sum / fetchedRatings.length);
         setAvgRating(averageRating);
       } else {
         setAvgRating(0);
@@ -51,7 +51,7 @@ function Book({ params }) {
         setIsAdmin(true);
       }
     }
-  }, []); //[params.bookid, avgRating]
+  });
 
   return (
     <>
@@ -72,8 +72,6 @@ function Book({ params }) {
             component={<h3>by {author[0]}</h3>}
           ></LinkableComponent>
         </div>
-        {/* <div className="item">
-          {records && <StarIcons rating={avgRating}></StarIcons>} */}
         <div className="item itemRating">
           <p className="itemRatingText">Professional rating:</p>
           {records && (
@@ -84,10 +82,10 @@ function Book({ params }) {
             ></ProfessionalStarIcons>
           )}
           <p className="itemRatingText">User rating: </p>
-          {records && <StarIcons rating={records.rating}></StarIcons>}
+          {records && <StarIcons rating={avgRating}></StarIcons>}
         </div>
-        <div className="item">
-          <Popover>
+        <div className="item" style={{ position: 'absolute', right: '50px' }}>
+          <Popover placement="bottom-right">
             <Popover.Trigger>
               <Button
                 css={{ backgroundColor: '#22b573' }}
@@ -112,7 +110,7 @@ function Book({ params }) {
           <p>First published: {records.releaseyear}</p>
           <p></p>
         </div>
-        <div style={{ position: 'absolute', right: 100, top: 200 }}>
+        <div style={{ position: 'absolute', right: 30, top: 200 }}>
           <CustomCard reviews={reviews}></CustomCard>
         </div>
       </div>

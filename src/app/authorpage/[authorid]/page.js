@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import Slideshow from './Slideshow';
 import StarIcons from '@/app/components/StarIcons';
 import pb from '@/app/(lib)/pocketbase';
-import img from './download.jpeg';
 
 function Author({ params }) {
   const [authorBooks, setAuthorBooks] = useState([]);
@@ -36,14 +35,8 @@ function Author({ params }) {
   return (
     <>
       <div id="authorGridContainer">
-        <div className="authorImg">
-          <img src={img.src}></img>
-        </div>
-        <div>
+        <div style={{ width: 500 }}>
           <p className="authorText">{records && records.name}</p>
-        </div>
-        <div>
-          <StarIcons></StarIcons>
         </div>
         <div className="authorSlideshow">
           <div id="booksSlideshow">
