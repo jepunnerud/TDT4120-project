@@ -3,7 +3,6 @@ import StarBorderIcon from '@material-ui/icons/StarBorder';
 import { useState, useEffect } from 'react';
 import { makeStyles, Button } from '@material-ui/core';
 import pb from '@/app/(lib)/pocketbase';
-import { Record } from 'pocketbase';
 
 const useStyles = makeStyles((theme) => ({
   root: {
