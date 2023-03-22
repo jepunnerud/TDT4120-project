@@ -83,6 +83,7 @@ function StarIconsWithButton(props) {
       }
     }
     setEditable(false);
+    window.location.reload();
   };
 
   return (

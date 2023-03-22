@@ -161,6 +161,9 @@ const NewBook = () => {
             >
               <option value="">Select genre</option>
               <option value="Action">Action</option>
+              <option value="Biography">Biography</option>
+              <option value="Children">Children</option>
+              <option value="Classic">Classic</option>
               <option value="Comedy">Comedy</option>
               <option value="Comic">Comic</option>
               <option value="Crime">Crime</option>
@@ -170,7 +173,7 @@ const NewBook = () => {
               <option value="History">History</option>
               <option value="Horror">Horror</option>
               <option value="Romance">Romance</option>
-              <option value="Science">Science</option>
+              <option value="Science fiction">Science fiction</option>
               <option value="Short story">Short story</option>
             </select>
           </Row>
