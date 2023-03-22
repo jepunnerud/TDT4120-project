@@ -17,6 +17,7 @@ function SearchView({ menuItems }) {
         <ul className="suggestion-list">
           {menuItems.map((item) => (
             <LinkableComponent
+              key="0"
               className="suggestion-item Link"
               link={
                 item.item.title == undefined
