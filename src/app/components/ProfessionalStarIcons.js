@@ -45,7 +45,6 @@ function StarIcons(props) {
   const classes = useStyles();
   const [rating, setRating] = useState(0);
   const [editable, setEditable] = useState(false);
-  const [bookid, setBookid] = useState(props.bookid);
 
   const handleClick = (value) => {
     setRating(value);
@@ -77,6 +76,28 @@ function StarIcons(props) {
   return (
     <>
       <div className={classes.root}>
+        {isAdmin &&
+          (!editable ? (
+            <Button
+              className={classes.btn}
+              style={{ position: 'absolute', left: '600px', top: '240px' }}
+              variant="contained"
+              color="primary"
+              onClick={handleRateClick}
+            >
+              Change professional rating
+            </Button>
+          ) : (
+            <Button
+              className={classes.btnSave}
+              style={{ position: 'absolute', left: '600px', top: '240px' }}
+              variant="contained"
+              color="primary"
+              onClick={handleSaveClick}
+            >
+              Save rating
+            </Button>
+          ))}
         <div className={classes.stars}>
           {[1, 2, 3, 4, 5].map((value) => {
             const star =
@@ -98,26 +119,6 @@ function StarIcons(props) {
             return star;
           })}
         </div>
-        {isAdmin &&
-          (!editable ? (
-            <Button
-              className={classes.btn}
-              variant="contained"
-              color="primary"
-              onClick={handleRateClick}
-            >
-              Change rating
-            </Button>
-          ) : (
-            <Button
-              className={classes.btnSave}
-              variant="contained"
-              color="primary"
-              onClick={handleSaveClick}
-            >
-              Save rating
-            </Button>
-          ))}
       </div>
     </>
   );

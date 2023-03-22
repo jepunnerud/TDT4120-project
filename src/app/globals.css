@@ -10,14 +10,15 @@ body {
 #authorGridContainer {
   display: grid;
   grid-template-columns: 10rem 20rem 23rem;
-  grid-template-rows: 1fr 2fr 1fr; /* the second row is twice as tall as the first row */
+  grid-template-rows: 0.5fr 2fr 1fr; /* the second row is twice as tall as the first row */
   margin: 5em;
   column-gap: 2.5em;
 }
 
 .authorText {
-  font-size: 22px;
+  font-size: 50px;
   margin-top: 0;
+  color: #22b573;
 }
 
 .authorSlideshow {
