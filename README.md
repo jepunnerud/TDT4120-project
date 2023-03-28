@@ -6,6 +6,17 @@ If you do not have yarn on your machine, cd to your machine's root folder and do
 npm install --global yarn
 ```
 
+If it is the first time you are setting up the project, do:
+
+```
+npm install --global next
+```
+
+Then cd to bookhub and do:
+```
+yarn add pocketbase
+```
+
 To run the backend server, cd to /bookhub and do:
 
 ```
